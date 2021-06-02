@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>List Employees</h3>
+    <a href="/employee"></a>
+    <table id="result">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Wage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $.get({
+        url: 'http://localhost:8002/employee/list',
+        method: 'GET',
+        success: function (data) {
+            console.log(data)
+            let result = '';
+            for (let i = 0; i < data.length; i++) {
+                result += '<td>' + data[i].name + '</td>';
+                result += '<td>' + data[i].wage + '</td>';
+            }
+            $('#result tbody').html(result)
+        },
+        error: function (){
+            alert('Errorr!');
+        }
+    });
+</script>
+</body>
+</html>
